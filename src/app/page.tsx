@@ -1,9 +1,21 @@
 'use client';
 
+import { Inter } from 'next/font/google';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { useState } from 'react';
+
+const inter = Inter({ subsets: ['latin'] });
 import { useEffect } from 'react';
 import { splitLetters } from '@/utils/splitLetters';
 
 export default function Home() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-100, 100], [30, -30]);
+  const rotateY = useTransform(x, [-100, 100], [-30, 30]);
+
+  const [isDragging, setIsDragging] = useState(false);
+  
   useEffect(() => {
     splitLetters();
   }, []);
