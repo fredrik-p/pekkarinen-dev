@@ -2,9 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
 
 interface Particle {
   id: number;
@@ -14,7 +11,7 @@ interface Particle {
   initialY: number;
 }
 
-const PARTICLE_COUNT = 50;
+const PARTICLE_COUNT = 20;
 const PARTICLE_RADIUS = 8;
 const INTERACTION_DISTANCE = 100;
 
@@ -81,7 +78,7 @@ export default function InteractiveBackground() {
   }, [particles, controls]);
 
   return (
-    <div className={`fixed inset-0 bg-gray-900 ${inter.className}`}>
+    <div className="fixed inset-0 bg-transparent">
       <div
         className="w-full h-full"
         onPointerMove={handlePointerMove}
@@ -96,10 +93,10 @@ export default function InteractiveBackground() {
         {particles.map((particle, index) => (
           <motion.div
             key={particle.id}
-            className="absolute rounded-full bg-gradient-to-r from-cyan-300 via-magenta-300 to-yellow-300"
+            className="absolute rounded-full bg-custom-magenta bg-opacity-50"
             style={{
-              width: PARTICLE_RADIUS * 4,
-              height: PARTICLE_RADIUS * 4,
+              width: PARTICLE_RADIUS * 10,
+              height: PARTICLE_RADIUS * 10,
               x: particle.initialX,
               y: particle.initialY,
             }}

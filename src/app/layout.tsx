@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import InteractiveBackground from './interactive-background';
+import Header from '@/components/server/Header';
 import './globals.css';
 
 const outfit = Outfit({ subsets: ['latin'] });
@@ -41,8 +42,11 @@ export default function RootLayout({
   return (
     <html lang="sv">
       <body className={outfit.className}>
-        <InteractiveBackground />
-        {children}
+        <div className="container mx-auto px-10 pt-10 lg:pt-20">
+          <InteractiveBackground />
+          <Header />
+          <main>{children}</main>
+        </div>
       </body>
     </html>
   );
