@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'fredrik pekkarinen - contact',
@@ -11,12 +12,12 @@ const Contact = () => {
         <h1 className="text-lg lg:text-2xl font-bold mb-4">
           For project inquires & collaboration please send and email to
         </h1>
-        <a
+        <Link
           href="mailto:hello@pekkarinen.dev"
-          className="block text-custom-blue Intro-contactLinkText ColorLink js-splitLetters mb-1 text-lg lg:text-2xl"
+          className="block Intro-contactLinkText ColorLink js-splitLetters mb-1 text-lg lg:text-2xl text-custom-blue "
         >
           hello@pekkarinen.dev
-        </a>
+        </Link>
       </div>
     </main>
   );

@@ -1,15 +1,18 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { splitLetters } from '@/utils/splitLetters';
 
 const Navigation = () => {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     splitLetters();
   }, []);
+
   return (
     <>
       <div
@@ -17,8 +20,30 @@ const Navigation = () => {
         data-content-field="navigation"
         className="flex-grow relative z-10"
       >
-        <nav className="main-nav">
-          <ul className="flex space-x-6">
+        {/* Burger Menu Button - Only visible on mobile */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden p-2 rounded transition-colors duration-200"
+          aria-label="Toggle menu"
+        >
+          <div className="w-6 h-5 relative flex flex-col justify-between">
+            <span
+              className={`h-0.5 w-full bg-custom-medium-blue rounded-full transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}
+            />
+            <span
+              className={`h-0.5 w-full bg-custom-medium-blue rounded-full transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}
+            />
+            <span
+              className={`h-0.5 w-full bg-custom-medium-blue rounded-full transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}
+            />
+          </div>
+        </button>
+
+        {/* Navigation Menu */}
+        <nav
+          className={`main-nav ${isOpen ? 'block' : 'hidden'} md:block absolute md:relative left-0 right-0 top-10 md:top-0 bg-white shadow-lg md:shadow-none md:bg-transparent p-4 md:p-0`}
+        >
+          <ul className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0 pt-4 md:pt-0">
             <li>
               <Link
                 href="/"
