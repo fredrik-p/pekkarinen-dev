@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { splitLetters } from '@/utils/splitLetters';
@@ -8,15 +8,37 @@ import { splitLetters } from '@/utils/splitLetters';
 const Navigation = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     splitLetters();
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <div
         id="topNav"
+        ref={menuRef}
         data-content-field="navigation"
         className="flex-grow relative z-10"
       >
@@ -41,12 +63,13 @@ const Navigation = () => {
 
         {/* Navigation Menu */}
         <nav
-          className={`main-nav ${isOpen ? 'block' : 'hidden'} md:block absolute md:relative left-0 right-0 top-10 md:top-0 bg-white shadow-lg md:shadow-none md:bg-transparent p-4 md:p-0`}
+          className={`main-nav ${isOpen ? 'block' : 'hidden'} md:block absolute md:relative left-0 right-0 top-10 md:top-0 bg-white rounded-lg shadow-sm md:shadow-none md:bg-transparent p-4 md:p-0`}
         >
-          <ul className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0 pt-4 md:pt-0">
+          <ul className="flex flex-col md:flex-row md:space-x-6 space-y-4 md:space-y-0 md:pt-0">
             <li>
               <Link
                 href="/"
+                onClick={handleLinkClick}
                 className={`${
                   pathname === '/'
                     ? 'text-custom-light-blue'
@@ -62,6 +85,7 @@ const Navigation = () => {
                 href="https://www.instagram.com/heyfred"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={handleLinkClick}
                 className="text-custom-medium-blue hover:text-custom-light-blue active:text-custom-light-blue transition-colors duration-200"
               >
                 Instagram
@@ -69,9 +93,9 @@ const Navigation = () => {
             </li>
 
             <li>
-              {' '}
               <Link
                 href="/contact"
+                onClick={handleLinkClick}
                 className={`${
                   pathname === '/contact'
                     ? 'text-custom-light-blue'
