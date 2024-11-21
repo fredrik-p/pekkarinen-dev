@@ -8,13 +8,24 @@ declare global {
     MathJax: any;
   }
 }
+
 const MathJaxComponent = () => {
   useEffect(() => {
     const initMathJax = () => {
       if (typeof window !== 'undefined' && window.MathJax) {
         window.MathJax = {
-          loader: { load: ['input/tex', 'output/chtml'] },
+          options: { enableMenu: false },
+          loader: {
+            load: [
+              'input/tex',
+              'input/mml',
+              'output/chtml',
+              '[mml]/mml3',
+              '[tex]/mhchem',
+            ],
+          },
           tex: {
+            packages: { '[+]': ['mhchem'] },
             inlineMath: [
               ['$', '$'],
               ['\\(', '\\)'],
@@ -45,10 +56,42 @@ const MathJaxComponent = () => {
   return (
     <div>
       <h1>MathJax Example</h1>
-      <p>
-        Here is some math:{' '}
-        <span>{`$Zn + 2H_3O^+ \\rightarrow Zn^{2+} + H_2 + 2H_2O$`}</span>
-      </p>
+
+      <div className="mt-3">
+        <p>Here is some math:</p>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: `
+          <math display="inline">
+            <msub>
+              <mtext>Zn&nbsp;+&nbsp;2&nbsp;H</mtext>
+              <mtext>3</mtext>
+            </msub>
+            <msup>
+              <mtext>O</mtext>
+              <mtext>+</mtext>
+            </msup>
+            <mtext>&nbsp;</mtext><mo>→</mo>
+            <msup>
+              <mtext>&nbsp;Zn</mtext>
+              <mrow>
+                <mtext>2+</mtext>
+              </mrow>
+            </msup>
+            <msub>
+              <mtext>&nbsp;+&nbsp;H</mtext>
+              <mtext>2</mtext>
+            </msub>
+            <msub>
+              <mtext>&nbsp;+&nbsp;2&nbsp;H</mtext>
+              <mtext>2</mtext>
+            </msub>
+            <mtext>O</mtext>
+          </math>
+        `,
+          }}
+        ></span>
+      </div>
     </div>
   );
 };

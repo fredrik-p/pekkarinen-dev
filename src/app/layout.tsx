@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="sv">
       <head>
-        <Script id="MathJax-script" src="/mathjax/es5/tex-chtml.jsx" />
+        <Script id="MathJax-script" src="/mathjax/es5/tex-mml-chtml.js" async />
       </head>
       <body className={outfit.className}>
         <div className="container mx-auto px-10 pt-10 lg:pt-20">
