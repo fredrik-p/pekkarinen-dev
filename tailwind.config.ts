@@ -28,6 +28,7 @@ const config: Config = {
         'custom-blue': '#02f',
         'custom-light-blue': '#75afff',
         'custom-medium-blue': '#3853ff',
+        'custom-bg': '#fcfcfc',
       },
     },
   },

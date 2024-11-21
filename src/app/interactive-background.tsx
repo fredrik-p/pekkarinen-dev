@@ -13,7 +13,7 @@ interface Particle {
   velocityY: number;
 }
 
-const PARTICLE_COUNT = 12;
+const PARTICLE_COUNT = 8;
 const PARTICLE_RADIUS = 20;
 const INTERACTION_DISTANCE = 150;
 const FORCE_MULTIPLIER = 25;
