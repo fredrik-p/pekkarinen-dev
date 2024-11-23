@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { splitLetters } from '@/utils/splitLetters';
 import SplitLettersText from '@/components/client/SplitLettersText';
 import TechMenu from '@/components/client/TechMenu';
-import MathJaxComponent from '@/components/client/MathJaxComponent';
 
 export default function Home() {
   useEffect(() => {
@@ -22,9 +21,6 @@ export default function Home() {
           text="Hi, I am a frontend developer based in Malmö, Sweden."
           component="p"
         />
-
-        <MathJaxComponent />
-
         <div>
           <TechMenu />
         </div>
