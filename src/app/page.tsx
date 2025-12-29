@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import { splitLetters } from '@/utils/splitLetters';
 import SplitLettersText from '@/components/client/SplitLettersText';
-import TechMenu from '@/components/client/TechMenu';
 
 export default function Home() {
   useEffect(() => {
@@ -21,9 +20,7 @@ export default function Home() {
           text="Hi, I am a frontend developer based in Malmö, Sweden."
           component="p"
         />
-        <div>
-          <TechMenu />
-        </div>
+        <div></div>
       </div>
     </main>
   );

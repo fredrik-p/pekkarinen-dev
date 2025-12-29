@@ -1,6 +1,5 @@
-import type { Metadata } from "next";
-import Script from 'next/script';
-import { Outfit } from "next/font/google";
+import type { Metadata } from 'next';
+import { Outfit } from 'next/font/google';
 import InteractiveBackground from './interactive-background';
 import Header from '@/components/server/Header';
 import './globals.css';
@@ -42,9 +41,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sv">
-      <head>
-        <Script id="MathJax-script" src="/mathjax/es5/tex-mml-chtml.js" async />
-      </head>
+      <head></head>
       <body className={outfit.className}>
         <div className="container mx-auto px-10 pt-10 lg:pt-20">
           <InteractiveBackground />

@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 export default function Contact() {
   return (
     <main className="flex flex-col items-center justify-center h-[70vh]">
-      <div className="max-w-sm">
+      <div className="max-w-md">
         <h1 className="text-lg lg:text-2xl font-bold mb-4">
-          For project inquires & collaboration please send and email to
+          For project inquires & collaboration please send an email to
         </h1>
         <Link href="mailto:hello@pekkarinen.dev">
           <SplitLettersText
